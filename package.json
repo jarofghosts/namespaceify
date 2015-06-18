@@ -1,0 +1,41 @@
+{
+  "name": "namespaceify",
+  "version": "1.0.0",
+  "description": "namespace local directories for easy and portable requires",
+  "main": "lib/index.js",
+  "dependencies": {
+    "babel": "^5.5.8",
+    "concat-stream": "^1.5.0",
+    "cssauron-falafel": "^1.2.1",
+    "duplexify": "^3.4.2",
+    "falafel": "^1.1.0",
+    "tape": "^4.0.0",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel": "^5.5.8",
+    "tape": "^4.0.0"
+  },
+  "scripts": {
+    "test": "babel-node test/index.js",
+    "build": "babel src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarofghosts/namespaceify.git"
+  },
+  "keywords": [
+    "namespace",
+    "local",
+    "relative",
+    "require",
+    "browserify",
+    "transform"
+  ],
+  "author": "jesse keane",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jarofghosts/namespaceify/issues"
+  },
+  "homepage": "https://github.com/jarofghosts/namespaceify#readme"
+}
