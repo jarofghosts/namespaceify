@@ -59,6 +59,8 @@ function namespaceify(file, {dir = CWD, aliases = ['require'], extensions = ['js
         return [name, path.resolve(dir, namespaces[name])]
       }
     }
+
+    return []
   }
 
   function getRequire(node) {

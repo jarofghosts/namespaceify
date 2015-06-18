@@ -147,6 +147,7 @@ test('can do multiple', t => {
   require('cats/meow')
   require('frogs/ribbit')
   require('../dogs/woof')
+  require('something-else')
   require('dogs/bark')
   `
 
@@ -154,6 +155,7 @@ test('can do multiple', t => {
   require('../../utils/meow')
   require('../hoodoos/ribbit')
   require('../dogs/woof')
+  require('something-else')
   require('../../lol/whocares/bark')
   `
 
