@@ -1,5 +1,8 @@
 # namespaceify
 
+[![Build Status](http://img.shields.io/travis/jarofghosts/interleave-array.svg?style=flat)](https://travis-ci.org/jarofghosts/interleave-array)
+[![npm install](http://img.shields.io/npm/dm/interleave-array.svg?style=flat)](https://www.npmjs.org/package/interleave-array)
+
 Browserify transform to namespace local directories for cleaner requires
 
 ## usage
