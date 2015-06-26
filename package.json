@@ -13,7 +13,6 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "babel": "^5.5.8",
     "tape": "^4.0.0"
   },
   "scripts": {

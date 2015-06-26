@@ -1,3 +1,5 @@
+require('babel/polyfill')
+
 const path = require('path')
 
 const select = require('cssauron-falafel')
