@@ -26,6 +26,7 @@ function namespaceify(file, {dir = CWD, aliases = ['require'], extensions = ['js
 
   function parseFile(data) {
     output.push(falafel(data, parseNode).toString())
+    output.push(null)
   }
 
   function parseNode(node) {
