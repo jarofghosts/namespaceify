@@ -47,9 +47,15 @@ function namespaceify(file, {dir = CWD, aliases = ['require'], extensions = ['js
     node.update(`${quote}${makeAlias()}${quote}`)
 
     function makeAlias() {
+      let relativeRequire = path.relative(path.dirname(file), aliased)
+
+      if(!relativeRequire.startsWith('.')) {
+        relativeRequire = `.${relativeRequire}`
+      }
+
       return reqString.replace(
           alias
-        , path.relative(path.dirname(file), aliased)
+        , relativeRequire
       )
     }
   }

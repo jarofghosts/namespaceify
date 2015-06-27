@@ -36,6 +36,24 @@ test('transforms requires', t => {
   namespaceStream.end('require("cats/lol")')
 })
 
+test('works with modules in the same dir', t => {
+  t.plan(1)
+
+  const options = {namespaces: {'cats': './utils'}, dir: '/projects/herp'}
+
+  const namespaceStream = namespace(
+      '/projects/herp/utils/derp.js'
+    , options
+  )
+
+  namespaceStream.on('data', data => {
+    t.equal(data.toString(), 'require("./lol")')
+  })
+
+  namespaceStream.end('require("cats/lol")')
+})
+
+
 test('respects quote type', t => {
   t.plan(1)
 
