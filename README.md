@@ -1,7 +1,9 @@
 # namespaceify
 
-[![Build Status](http://img.shields.io/travis/jarofghosts/namespaceify.svg?style=flat)](https://travis-ci.org/jarofghosts/namespaceify)
-[![npm install](http://img.shields.io/npm/dm/namespaceify.svg?style=flat)](https://www.npmjs.org/package/namespaceify)
+[![Build Status](https://img.shields.io/travis/jarofghosts/namespaceify.svg?style=flat-square)](https://travis-ci.org/jarofghosts/namespaceify)
+[![npm install](https://img.shields.io/npm/dm/namespaceify.svg?style=flat-square)](https://www.npmjs.org/package/namespaceify)
+[![npm version](https://img.shields.io/npm/v/namespaceify.svg?style=flat-square)](https://www.npmjs.org/package/namespaceify)
+[![License](https://img.shields.io/npm/l/namespaceify.svg?style=flat-square)](https://github.com/jarofghosts/namespaceify/blob/master/LICENSE)
 
 Browserify transform to namespace local directories for cleaner requires
 
