@@ -13,9 +13,11 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
+    "standard": "^5.4.1",
     "tape": "^4.0.0"
   },
   "scripts": {
+    "lint": "standard src/*.js test/*.js",
     "test": "babel-node test/index.js",
     "build": "babel src --out-dir lib"
   },

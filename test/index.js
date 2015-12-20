@@ -8,8 +8,8 @@ test('transforms requires', t => {
   const options = {namespaces: {'cats': './lib/utils'}, dir: '/projects/herp'}
 
   const namespaceStream = namespace(
-      '/projects/herp/lib/modules/derp.js'
-    , options
+    '/projects/herp/lib/modules/derp.js',
+    options
   )
 
   namespaceStream.on('data', data => {
@@ -25,8 +25,8 @@ test('transforms requires', t => {
   const options = {namespaces: {'cats': './utils'}, dir: '/projects/herp'}
 
   const namespaceStream = namespace(
-      '/projects/herp/lib/modules/derp.js'
-    , options
+    '/projects/herp/lib/modules/derp.js',
+    options
   )
 
   namespaceStream.on('data', data => {
@@ -42,8 +42,8 @@ test('works with modules in the same dir', t => {
   const options = {namespaces: {'cats': './utils'}, dir: '/projects/herp'}
 
   const namespaceStream = namespace(
-      '/projects/herp/utils/derp.js'
-    , options
+    '/projects/herp/utils/derp.js',
+    options
   )
 
   namespaceStream.on('data', data => {
@@ -53,15 +53,14 @@ test('works with modules in the same dir', t => {
   namespaceStream.end('require("cats/lol")')
 })
 
-
 test('respects quote type', t => {
   t.plan(1)
 
   const options = {namespaces: {'cats': './utils'}, dir: '/projects/herp'}
 
   const namespaceStream = namespace(
-      '/projects/herp/lib/modules/derp.js'
-    , options
+    '/projects/herp/lib/modules/derp.js',
+    options
   )
 
   namespaceStream.on('data', data => {
@@ -75,13 +74,13 @@ test('multiple aliases work', t => {
   t.plan(1)
 
   const options = {
-      namespaces: {
-          'cats': './utils'
-        , 'dogs': './lol/whocares'
-        , 'frogs': './lib/hoodoos'
-      }
-    , dir: '/projects/herp'
-    , aliases: ['proxyquire', 'require', 'rooquire']
+    namespaces: {
+      'cats': './utils',
+      'dogs': './lol/whocares',
+      'frogs': './lib/hoodoos'
+    },
+    dir: '/projects/herp',
+    aliases: ['proxyquire', 'require', 'rooquire']
   }
 
   const original = `
@@ -99,8 +98,8 @@ test('multiple aliases work', t => {
   `
 
   const namespaceStream = namespace(
-      '/projects/herp/lib/modules/derp.js'
-    , options
+    '/projects/herp/lib/modules/derp.js',
+    options
   )
 
   namespaceStream.on('data', data => {
@@ -114,13 +113,13 @@ test('can specify aliases', t => {
   t.plan(1)
 
   const options = {
-      namespaces: {
-          'cats': './utils'
-        , 'dogs': './lol/whocares'
-        , 'frogs': './lib/hoodoos'
-      }
-    , dir: '/projects/herp'
-    , aliases: ['proxyquire']
+    namespaces: {
+      'cats': './utils',
+      'dogs': './lol/whocares',
+      'frogs': './lib/hoodoos'
+    },
+    dir: '/projects/herp',
+    aliases: ['proxyquire']
   }
 
   const original = `
@@ -138,8 +137,8 @@ test('can specify aliases', t => {
   `
 
   const namespaceStream = namespace(
-      '/projects/herp/lib/modules/derp.js'
-    , options
+    '/projects/herp/lib/modules/derp.js',
+    options
   )
 
   namespaceStream.on('data', data => {
@@ -153,12 +152,12 @@ test('can do multiple', t => {
   t.plan(1)
 
   const options = {
-      namespaces: {
-          'cats': './utils'
-        , 'dogs': './lol/whocares'
-        , 'frogs': './lib/hoodoos'
-      }
-    , dir: '/projects/herp'
+    namespaces: {
+      'cats': './utils',
+      'dogs': './lol/whocares',
+      'frogs': './lib/hoodoos'
+    },
+    dir: '/projects/herp'
   }
 
   const original = `
@@ -178,8 +177,8 @@ test('can do multiple', t => {
   `
 
   const namespaceStream = namespace(
-      '/projects/herp/lib/modules/derp.js'
-    , options
+    '/projects/herp/lib/modules/derp.js',
+    options
   )
 
   namespaceStream.on('data', data => {
@@ -195,8 +194,8 @@ test('ignores non-js files if not configured otherwise', t => {
   const options = {namespaces: {'cats': './utils'}, dir: '/projects/herp'}
 
   const namespaceStream = namespace(
-      '/projects/herp/lib/modules/derp.hs'
-    , options
+    '/projects/herp/lib/modules/derp.hs',
+    options
   )
 
   namespaceStream.on('data', data => {
@@ -210,14 +209,14 @@ test('can specify extensions to parse', t => {
   t.plan(1)
 
   const options = {
-      namespaces: {'cats': './utils'}
-    , dir: '/projects/herp'
-    , extensions: ['hs']
+    namespaces: {'cats': './utils'},
+    dir: '/projects/herp',
+    extensions: ['hs']
   }
 
   const namespaceStream = namespace(
-      '/projects/herp/lib/modules/derp.hs'
-    , options
+    '/projects/herp/lib/modules/derp.hs',
+    options
   )
 
   namespaceStream.on('data', data => {

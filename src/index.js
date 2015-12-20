@@ -3,68 +3,63 @@ require('babel/polyfill')
 const path = require('path')
 
 const select = require('cssauron-falafel')
-    , concat = require('concat-stream')
-    , duplex = require('duplexify')
-    , through = require('through2')
-    , falafel = require('falafel')
+const concat = require('concat-stream')
+const duplex = require('duplexify')
+const through = require('through2')
+const falafel = require('falafel')
 
 const CWD = process.cwd()
 
 module.exports = namespaceify
 
-function namespaceify(file, {dir = CWD, aliases = ['require'], extensions = ['js'], namespaces}) {
+function namespaceify (file, {dir = CWD, aliases = ['require'], extensions = ['js'], namespaces} = {}) {
   const output = through()
 
-  if(extensions.indexOf(path.extname(file).slice(1)) === -1) {
+  if (!extensions.includes(path.extname(file).slice(1))) {
     return output
   }
 
   const aliasSelectors = aliases.map(toSelector)
-      , names = Object.keys(namespaces)
+  const names = Object.keys(namespaces)
 
   return duplex(concat({encoding: 'string'}, parseFile), output)
 
-  function parseFile(data) {
+  function parseFile (data) {
     output.push(falafel(data, parseNode).toString())
     output.push(null)
   }
 
-  function parseNode(node) {
+  function parseNode (node) {
     const reqString = getRequire(node)
 
-    if(!reqString || reqString.startsWith('.')) {
+    if (!reqString || reqString.startsWith('.')) {
       return
     }
 
     const [alias, aliased] = getAlias(reqString)
 
-    if(!aliased) {
+    if (!aliased) {
       return
     }
 
-    const quote = node.source()[0]
+    const [quote] = node.source()
 
     node.update(`${quote}${makeAlias()}${quote}`)
 
-    function makeAlias() {
+    function makeAlias () {
       let relativeRequire = path.relative(path.dirname(file), aliased)
 
-      if(!relativeRequire.startsWith('.')) {
+      if (!relativeRequire.startsWith('.')) {
         relativeRequire = `.${relativeRequire}`
       }
 
-      return reqString.replace(
-          alias
-        , relativeRequire
-      )
+      return reqString.replace(alias, relativeRequire)
     }
   }
 
-  function getAlias(str) {
-    for(let i = 0; i < names.length; ++i) {
-      let name = names[i]
-
-      if(str.startsWith(`${name}/`)) {
+  function getAlias (str) {
+    for (let name of names) {
+      if (str.startsWith(`${name}/`)) {
         return [name, path.resolve(dir, namespaces[name])]
       }
     }
@@ -72,19 +67,19 @@ function namespaceify(file, {dir = CWD, aliases = ['require'], extensions = ['js
     return []
   }
 
-  function getRequire(node) {
+  function getRequire (node) {
     let required
 
-    for(let i = 0; i < aliasSelectors.length; ++i) {
+    for (let i = 0; i < aliasSelectors.length; ++i) {
       required = aliasSelectors[i](node)
 
-      if(required) {
+      if (required) {
         return required.value
       }
     }
   }
 }
 
-function toSelector(word) {
+function toSelector (word) {
   return select(`call > id[name=${word}]:first-child + literal`)
 }
